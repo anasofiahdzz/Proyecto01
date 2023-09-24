@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <TextView
         android:id="@+id/titulo"
@@ -29,52 +29,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo" />
 
-    <TextView
-        android:id="@+id/ciudadElegida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CiudadActual"
-        app:layout_constraintBottom_toTopOf="@+id/actualizaClima"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo" />
-
-    <TextView
-        android:id="@+id/latitud"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="12dp"
-        android:text="Latitud Actual"
-        app:layout_constraintEnd_toStartOf="@+id/ciudadElegida"
-        app:layout_constraintTop_toBottomOf="@+id/ciudadElegida" />
-
-    <TextView
-        android:id="@+id/longitud"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:text="longitud Actual"
-        app:layout_constraintStart_toEndOf="@+id/ciudadElegida"
-        app:layout_constraintTop_toBottomOf="@+id/ciudadElegida" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
-
-    <TextView
-        android:id="@+id/grados"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="gradosCentígrados"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ciudadElegida" />
 
     <Button
         android:id="@+id/ciudadIata"
@@ -96,42 +56,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo" />
 
-    <EditText
-        android:id="@+id/recibidor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo" />
-
     <Button
         android:id="@+id/gticket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generar Ticket"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="625dp"
-        tools:ignore="MissingConstraints" />
-    <!-- nuevo -->
+        android:layout_marginStart="134dp"
+        android:layout_marginEnd="135dp"
+        android:text="Buscar Ticket"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actualizaClima" />
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        tools:ignore="MissingConstraints">
+        android:layout_width="260dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="75dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ciudadIata">
 
         <TextView
-            android:id="@+id/temperaturaActual"
-            android:layout_width="0dp"
+            android:id="@+id/textCiudad"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Temperatura Actual"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:text="Ciudad Actual: " />
+
+        <TextView
+            android:id="@+id/textGrados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grados: " />
+
+        <TextView
+            android:id="@+id/textLatitud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Latitud: " />
+
+        <TextView
+            android:id="@+id/textLongitud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Longitud: " />
 
     </LinearLayout>
 

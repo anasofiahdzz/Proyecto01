@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.TicketActivity">
+
+    <Button
+        android:id="@+id/regreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:text="Regresar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clima1"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <LinearLayout
+        android:id="@+id/clima1"
+        android:layout_width="150dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/textRecibidorTicket"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textCiudadIda1"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="Ciudad Ida: " />
+
+        <TextView
+            android:id="@+id/textGradosCiudad1"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="Grados: " />
+
+        <TextView
+            android:id="@+id/textLatCiudad1"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="Latitud: " />
+
+        <TextView
+            android:id="@+id/textLongCiudad1"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="Longitud: " />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/clima2"
+        android:layout_width="150dp"
+        android:layout_height="250dp"
+        android:layout_marginEnd="-40dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/clima1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/clima1"
+        app:layout_constraintTop_toTopOf="@+id/clima1">
+
+        <TextView
+            android:id="@+id/textCiudadIda2"
+            android:text="Ciudad destino: "
+            android:layout_height="25dp"
+            android:layout_width="match_parent"/>
+
+        <TextView
+            android:id="@+id/textGradosCiudad2"
+            android:text="Grados: "
+            android:layout_height="25dp"
+            android:layout_width="match_parent"/>
+
+        <TextView
+            android:id="@+id/textLatCiudad2"
+            android:text="Latitud: "
+            android:layout_height="25dp"
+            android:layout_width="match_parent"/>
+
+        <TextView
+            android:id="@+id/textLongCiudad2"
+            android:text="Longitud: "
+            android:layout_height="25dp"
+            android:layout_width="match_parent"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/Instrucciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="Por favor, ingrese su ticket."
+        app:layout_constraintBottom_toTopOf="@+id/clima1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textRecibidorTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/buscaTicket"
+        app:layout_constraintEnd_toEndOf="@+id/Instrucciones"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="@+id/Instrucciones" />
+
+    <Button
+        android:id="@+id/buscaTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buscar"
+        app:layout_constraintBottom_toTopOf="@+id/regreso"
+        app:layout_constraintEnd_toEndOf="@+id/regreso"
+        app:layout_constraintStart_toStartOf="@+id/regreso" />
+</androidx.constraintlayout.widget.ConstraintLayout>
