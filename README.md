@@ -13,7 +13,7 @@ El código IATA es utilizado por las aerolineas para identificar las ciudades o 
 
 # Integrantes
 
-Pérez Evaristo Eris
-Hernández Zavala Ana Sofía
+Pérez Evaristo Eris\\
+Hernández Zavala Ana Sofía\\
 Matu Hernandez Diana
 
