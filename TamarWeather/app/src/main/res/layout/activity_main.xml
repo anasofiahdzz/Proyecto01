@@ -40,7 +40,7 @@
         android:id="@+id/ciudadIata"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="72dp"
         android:text="Buscar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,5 +104,17 @@
             android:text="Longitud: " />
 
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/textRecibidorPrincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="@+id/iataociudad"
+        app:layout_constraintStart_toStartOf="@+id/iataociudad"
+        app:layout_constraintTop_toBottomOf="@+id/titulo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
