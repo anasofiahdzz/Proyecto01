@@ -1,120 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contenidoPantalla"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/colorgradiante"
+    android:orientation="vertical"
+    android:padding="25dp"
     tools:context=".activities.MainActivity">
 
-    <TextView
-        android:id="@+id/titulo"
+    <RelativeLayout
+        android:id="@+id/contenidoTotal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="300dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/contenidoActualidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textCiudadPrin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CiudadActual"
+                android:textSize="24sp"></TextView>
+
+            <TextView
+                android:id="@+id/textFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fechaActual"
+                android:textSize="20dp"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contenidoPrinc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textDescripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descripcion"
+                android:textSize="20dp"></TextView>
+
+            <TextView
+                android:id="@+id/textGrados"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="55°C"
+                android:textSize="80dp"></TextView>
+
+            <LinearLayout
+                android:id="@+id/contenidoAdicional"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textLatitud"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="latitud"
+                    android:textSize="20dp"></TextView>
+
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"></Space>
+
+                <TextView
+                    android:id="@+id/textLongitud"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="longitud"
+                    android:textSize="20dp"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contenidoExtra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textTempMax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="temperatura minima"
+                    android:textSize="20dp"></TextView>
+
+                <TextView
+                    android:id="@+id/textTempMin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="temperatura Min"
+                    android:textSize="20dp"></TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/textCiudadInt"
+        android:layout_below="@id/contenidoTotal"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="-300dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Bienvenidx a Tamar Weather :)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.008" />
+        android:hint="Introduzca una ciudad">
+
+    </EditText>
 
     <Button
         android:id="@+id/actualizaClima"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="520dp"
-        android:text="Actualizar clima"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
-
+        android:layout_below="@id/textCiudadInt"
+        android:layout_centerInParent="true"
+        android:text="Buscar Clima" />
     <Button
-        android:id="@+id/ciudadIata"
+        android:id="@+id/gTicket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:text="Buscar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iataociudad" />
-
-    <TextView
-        android:id="@+id/iataociudad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="Introduzca una IATA o cuidad para consultar el clima"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo" />
-
-    <Button
-        android:id="@+id/gticket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="134dp"
-        android:layout_marginEnd="135dp"
+        android:layout_below="@+id/actualizaClima"
+        android:layout_centerInParent="true"
         android:text="Buscar Ticket"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/actualizaClima" />
-
-    <LinearLayout
-        android:layout_width="260dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="75dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ciudadIata">
-
-        <TextView
-            android:id="@+id/textCiudad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ciudad Actual: " />
-
-        <TextView
-            android:id="@+id/textGrados"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Grados: " />
-
-        <TextView
-            android:id="@+id/textLatitud"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Latitud: " />
-
-        <TextView
-            android:id="@+id/textLongitud"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Longitud: " />
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/textRecibidorPrincipal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="@+id/iataociudad"
-        app:layout_constraintStart_toStartOf="@+id/iataociudad"
-        app:layout_constraintTop_toBottomOf="@+id/titulo" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        >
+    </Button>
+</RelativeLayout>

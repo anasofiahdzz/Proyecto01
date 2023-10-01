@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/colorgradiante"
     tools:context=".activities.TicketActivity">
 
     <Button
@@ -30,25 +31,33 @@
 
         <TextView
             android:id="@+id/textCiudadIda1"
+            android:textSize="18dp"
             android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="25dp"
             android:text="Ciudad Ida: " />
 
         <TextView
             android:id="@+id/textGradosCiudad1"
+            android:textSize="18dp"
             android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="25dp"
             android:text="Grados: " />
 
         <TextView
             android:id="@+id/textLatCiudad1"
+            android:textSize="18dp"
             android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="25dp"
             android:text="Latitud: " />
 
         <TextView
             android:id="@+id/textLongCiudad1"
+            android:textSize="18dp"
             android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="25dp"
             android:text="Longitud: " />
 
@@ -56,6 +65,7 @@
 
     <LinearLayout
         android:id="@+id/clima2"
+        android:textSize="18dp"
         android:layout_width="150dp"
         android:layout_height="250dp"
         android:layout_marginEnd="-40dp"
@@ -67,24 +77,32 @@
 
         <TextView
             android:id="@+id/textCiudadIda2"
+            android:textSize="18dp"
+            android:gravity="center"
             android:text="Ciudad destino: "
             android:layout_height="25dp"
             android:layout_width="match_parent"/>
 
         <TextView
             android:id="@+id/textGradosCiudad2"
+            android:textSize="18dp"
+            android:gravity="center"
             android:text="Grados: "
             android:layout_height="25dp"
             android:layout_width="match_parent"/>
 
         <TextView
             android:id="@+id/textLatCiudad2"
+            android:textSize="18dp"
+            android:gravity="center"
             android:text="Latitud: "
             android:layout_height="25dp"
             android:layout_width="match_parent"/>
 
         <TextView
             android:id="@+id/textLongCiudad2"
+            android:textSize="18dp"
+            android:gravity="center"
             android:text="Longitud: "
             android:layout_height="25dp"
             android:layout_width="match_parent"/>
@@ -93,6 +111,8 @@
 
     <TextView
         android:id="@+id/Instrucciones"
+        android:gravity="center"
+        android:textSize="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
@@ -104,6 +124,8 @@
 
     <EditText
         android:id="@+id/textRecibidorTicket"
+        android:gravity="center"
+        android:hint="Escriba aquí su ticket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"

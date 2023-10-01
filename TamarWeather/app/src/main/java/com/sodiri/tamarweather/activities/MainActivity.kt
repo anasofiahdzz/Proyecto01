@@ -1,73 +1,106 @@
 package com.sodiri.tamarweather.activities
 
 import android.content.Intent
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
-import com.sodiri.tamarweather.dataclimas.ClimaApi
-import com.sodiri.tamarweather.dataclimas.ClimaResponse
 import com.sodiri.tamarweather.R
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import org.json.JSONObject
+import java.net.URL
+
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val actualizaClima: Button = findViewById(R.id.actualizaClima)
-
-        //Actualiza el clima una vez es presionado
         actualizaClima.setOnClickListener {
             Toast.makeText(this, "Actualizando...", Toast.LENGTH_LONG).show()
+            obtenClima().execute()
         }
 
-        val consultarTicket: Button = findViewById(R.id.gticket)
-
-        //Inicia la pantalla de consulta de ticket en caso de que sea presionado
+        val consultarTicket: Button = findViewById(R.id.gTicket)
         consultarTicket.setOnClickListener {
             val intento : Intent = Intent(this, TicketActivity::class.java)
             startActivity(intento)
         }
+    }
 
-        val ciudad = "London,uk"
-        val llaveApi = "f6adade6884dd6823a33809867ec6cb9"
+    val llave : String = "f6adade6884dd6823a33809867ec6cb9"
 
-        //Creación del retrofit a partir de la url base
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://api.openweathermap.org/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    /**
+     * Clase interna asíncrona para llamar a la Api de OpenWeather
+     * Propociona los datos requeridos dada la ciudad introducida por
+     * el usuario
+     */
+    inner class obtenClima() : AsyncTask<String, Void, String>(){
 
-        val servicio = retrofit.create(ClimaApi::class.java)
+        /**
+         * Método que realiza la solicitud en segundo plano.
+         *
+         * @param p0 Arreglo de cadenas que contiene la ciudad proporcionada.
+         * @return Respuesta de la solicitud como una cadena JSON.
+         */
+        override fun doInBackground(vararg p0: String?): String? {
 
-        val llamada = servicio.obtenerClima(ciudad, llaveApi)
+            var respuesta: String?
+            try {
+                val ciudadIntro = findViewById<EditText>(R.id.textCiudadInt)
+                var ciudad = ciudadIntro.text.toString()
+                respuesta = URL("https://api.openweathermap.org/data/2.5/weather?q=$ciudad&units=metric&appid=$llave&lang=sp")
+                    .readText(Charsets.UTF_8)
+            }catch (e: Exception){
+                respuesta = null
 
-        //Llamada a la API con la asignación de datos obtenidos
-        llamada.enqueue(object : Callback<List<ClimaResponse>> {
-            override fun onResponse(
-                call: Call<List<ClimaResponse>>,
-                response: Response<List<ClimaResponse>>
-            ) {
-                if (response.isSuccessful) {
-                    val datos = response.body()
-                    if (datos != null){
-                        var ciudad = datos[6].name
-                        var grados = datos[5].main[3].temp
-                        var latitud = datos[2].coord[0].lat
-                        var longitud = datos[0].coord[1].lon
-                    }
-                }
             }
-            override fun onFailure(call: Call<List<ClimaResponse>>, t: Throwable) {
-                    println("Hubo fallo en ${t.message}")
+            return respuesta
+        }
+
+        /**
+         * Método llamado después de que se completa la solicitud en segundo plano.
+         *
+         * @param result Resultado de la solicitud en segundo plano como una cadena JSON.
+         */
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+            try{
+                val objetoJSON = JSONObject(result)
+                val main = objetoJSON.getJSONObject("main")
+                val clima = objetoJSON.getJSONArray("weather").getJSONObject(0)
+                val coordenadas = objetoJSON.getJSONObject("coord")
+
+                val ciudadActual = objetoJSON.getString("name")
+                val descripción = clima.getString("description")
+                val temperaturaActual = main.getString("temp") + "°C"
+                val temperaturaMax = "Temperatura máxima: " + main.getString("temp_max") + "°C"
+                val temperaturaMin = "Temperatura mínima: " + main.getString("temp_min") + "°C"
+                val latitud = "Latitud: "+ coordenadas.getString("lat")
+                val longitud = "Longitud: "+ coordenadas.getString("lon")
+
+                findViewById<TextView>(R.id.textCiudadPrin).text = ciudadActual
+                findViewById<TextView>(R.id.textDescripcion).text = descripción
+                findViewById<TextView>(R.id.textLatitud).text = latitud
+                findViewById<TextView>(R.id.textLongitud).text = longitud
+                findViewById<TextView>(R.id.textGrados).text = temperaturaActual
+                findViewById<TextView>(R.id.textTempMax).text = temperaturaMax
+                findViewById<TextView>(R.id.textTempMin).text = temperaturaMin
+
+            }catch (e: Exception){
+                findViewById<TextView>(R.id.textCiudadPrin).text = null
+                findViewById<TextView>(R.id.textDescripcion).text = "Fallo al consultar clima"
+                findViewById<TextView>(R.id.textLatitud).text = null
+                findViewById<TextView>(R.id.textLongitud).text = null
+                findViewById<TextView>(R.id.textGrados).text = null
+                findViewById<TextView>(R.id.textTempMax).text = null
+                findViewById<TextView>(R.id.textTempMin).text = null
             }
-        })
+        }
     }
 }
 
