@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
      * Propociona los datos requeridos dada la ciudad introducida por
      * el usuario
      */
-    inner class obtenClima() : AsyncTask<String, Void, String>(){
+    inner class obtenClima : AsyncTask<String, Void, String>(){
 
         /**
          * Método que realiza la solicitud en segundo plano.
