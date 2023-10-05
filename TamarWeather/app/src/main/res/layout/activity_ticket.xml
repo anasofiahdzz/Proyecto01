@@ -39,11 +39,11 @@
 
         <TextView
             android:id="@+id/textGradosCiudad1"
-            android:textSize="18dp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_height="25dp"
-            android:text="Grados: " />
+            android:text="Grados: "
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/textLatCiudad1"
@@ -145,4 +145,5 @@
         app:layout_constraintBottom_toTopOf="@+id/regreso"
         app:layout_constraintEnd_toEndOf="@+id/regreso"
         app:layout_constraintStart_toStartOf="@+id/regreso" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

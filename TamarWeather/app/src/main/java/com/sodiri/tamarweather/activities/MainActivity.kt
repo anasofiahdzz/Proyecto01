@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         val consultarTicket: Button = findViewById(R.id.gTicket)
         consultarTicket.setOnClickListener {
-            val intento : Intent = Intent(this, TicketActivity::class.java)
+            val intento = Intent(this, TicketActivity::class.java)
             startActivity(intento)
         }
     }
@@ -42,8 +42,7 @@ class MainActivity : AppCompatActivity() {
     inner class obtenClima : AsyncTask<String, Void, String>(){
 
         /**
-         * Método que realiza la solicitud en segundo plano.
-         *
+         * Método que realiza la solicitud de la API en segundo plano.
          * @param p0 Arreglo de cadenas que contiene la ciudad proporcionada.
          * @return Respuesta de la solicitud como una cadena JSON.
          */
@@ -52,12 +51,12 @@ class MainActivity : AppCompatActivity() {
             var respuesta: String?
             try {
                 val ciudadIntro = findViewById<EditText>(R.id.textCiudadInt)
-                var ciudad = ciudadIntro.text.toString()
+                val ciudad = ciudadIntro.text.toString()
+
                 respuesta = URL("https://api.openweathermap.org/data/2.5/weather?q=$ciudad&units=metric&appid=$llave&lang=sp")
                     .readText(Charsets.UTF_8)
             }catch (e: Exception){
                 respuesta = null
-
             }
             return respuesta
         }
@@ -78,10 +77,10 @@ class MainActivity : AppCompatActivity() {
                 val ciudadActual = objetoJSON.getString("name")
                 val descripción = clima.getString("description")
                 val temperaturaActual = main.getString("temp") + "°C"
-                val temperaturaMax = "Temperatura máxima: " + main.getString("temp_max") + "°C"
-                val temperaturaMin = "Temperatura mínima: " + main.getString("temp_min") + "°C"
-                val latitud = "Latitud: "+ coordenadas.getString("lat")
-                val longitud = "Longitud: "+ coordenadas.getString("lon")
+                val temperaturaMax = "Temperatura máxima: \n" + main.getString("temp_max") + "°C"
+                val temperaturaMin = "Temperatura mínima: \n" + main.getString("temp_min") + "°C"
+                val latitud = "Latitud: \n"+ coordenadas.getString("lat")
+                val longitud = "Longitud: \n"+ coordenadas.getString("lon")
 
                 findViewById<TextView>(R.id.textCiudadPrin).text = ciudadActual
                 findViewById<TextView>(R.id.textDescripcion).text = descripción
