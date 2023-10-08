@@ -1,12 +1,15 @@
 package com.sodiri.tamarweather.activities;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.Window;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.sodiri.tamarweather.R;
-import java.util.TimerTask;
+
 import java.util.Timer;
+import java.util.TimerTask;
+
 public class ScreenActivity extends AppCompatActivity {
 
     @Override

@@ -9,7 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.sodiri.tamarweather.R
-import datas.Ticket
+import datos.Ticket
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.json.JSONObject
@@ -63,9 +63,9 @@ class TicketActivity : AppCompatActivity() {
      */
     private fun leeCSV() : List<Ticket>{
         val buffer = BufferedReader(assets.open("dataset2.csv").reader())
-        val csvParser = CSVParser.parse(buffer, CSVFormat.DEFAULT)
+        val analizadorCSV = CSVParser.parse(buffer, CSVFormat.DEFAULT)
         val listaTicket = mutableListOf<Ticket>()
-        csvParser.forEach {
+        analizadorCSV.forEach {
             it?.let {
                 val tickets = Ticket(
                     num_ticket = it.get(0),
