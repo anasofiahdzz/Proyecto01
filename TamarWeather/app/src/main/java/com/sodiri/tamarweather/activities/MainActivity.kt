@@ -15,23 +15,27 @@ import org.apache.commons.csv.CSVParser
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.Date
 
 
-class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val actualizaClima : Button = findViewById(R.id.actualizaClima)
         //Actualiza el clima una vez la ciudad ha sido introducida
-        val actualizaClima: Button = findViewById(R.id.actualizaClima)
         actualizaClima.setOnClickListener {
             Toast.makeText(this, "Actualizando...", Toast.LENGTH_LONG).show()
+            obtenFecha()
             obtenCiudadUI()
             llamadoIATACiudad()
         }
 
-        //Cambia a la actividad donde se introducen los tickets del usuario a consultar.
         val consultarTicket: Button = findViewById(R.id.gTicket)
+        //Cambia a la actividad donde se introducen los tickets del usuario a consultar.
         consultarTicket.setOnClickListener {
             val intento = Intent(this, TicketActivity::class.java)
             startActivity(intento)
@@ -42,7 +46,16 @@ class MainActivity : AppCompatActivity() {
     lateinit var ciudadOIATA : String
     lateinit var latitudIATA : String
     lateinit var longitudIATA: String
+
     val llave : String = "f6adade6884dd6823a33809867ec6cb9"
+
+    private fun obtenFecha(){
+        val fechaAct = Date()
+        val formato = SimpleDateFormat("dd-MM-yyyy")
+        val fechaConFormato = formato.format(fechaAct)
+
+        findViewById<TextView>(R.id.textFecha).text = fechaConFormato
+    }
 
     /**
      * Metodo que selecciona si la entrada recibida por el usuario
@@ -166,21 +179,26 @@ class MainActivity : AppCompatActivity() {
                 val ciudadActual = objetoJSON.getString("name")
                 val descripción = clima.getString("description")
                 val temperaturaActual = main.getString("temp") + "°C"
-                val temperaturaMax = "Temperatura máxima: \n" + main.getString("temp_max") + "°C"
-                val temperaturaMin = "Temperatura mínima: \n" + main.getString("temp_min") + "°C"
+                val temperaturaMax = "Temp. máxima: \n" + main.getString("temp_max") + "°C"
+                val temperaturaMin = "Temp. mínima: \n" + main.getString("temp_min") + "°C"
                 val latitud = "Latitud: \n"+ coordenadas.getString("lat")
                 val longitud = "Longitud: \n"+ coordenadas.getString("lon")
+                val humedad = "Humedad: \n" + main.getString("humidity") + "%"
+                val sensacionTerm = "Sensación: \n" + main.getString("feels_like") + "°C"
 
-                findViewById<TextView>(R.id.textCiudadPrin).text = ciudadActual
+
+                findViewById<TextView>(R.id.textCiudad).text = ciudadActual
                 findViewById<TextView>(R.id.textDescripcion).text = descripción
                 findViewById<TextView>(R.id.textLatitud).text = latitud
                 findViewById<TextView>(R.id.textLongitud).text = longitud
                 findViewById<TextView>(R.id.textGrados).text = temperaturaActual
                 findViewById<TextView>(R.id.textTempMax).text = temperaturaMax
                 findViewById<TextView>(R.id.textTempMin).text = temperaturaMin
+                findViewById<TextView>(R.id.textSensTerm).text = sensacionTerm
+                findViewById<TextView>(R.id.textHumedad).text = humedad
 
             }catch (e: Exception){
-                findViewById<TextView>(R.id.textCiudadPrin).text = null
+                findViewById<TextView>(R.id.textCiudad).text = null
                 findViewById<TextView>(R.id.textDescripcion).text = "Fallo al consultar clima"
                 findViewById<TextView>(R.id.textLatitud).text = null
                 findViewById<TextView>(R.id.textLongitud).text = null
@@ -236,27 +254,33 @@ class MainActivity : AppCompatActivity() {
                 val ciudadActual = objetoJSON.getString("name")
                 val descripción = clima.getString("description")
                 val temperaturaActual = main.getString("temp") + "°C"
-                val temperaturaMax = "Temperatura máxima: \n" + main.getString("temp_max") + "°C"
-                val temperaturaMin = "Temperatura mínima: \n" + main.getString("temp_min") + "°C"
+                val temperaturaMax = "Temp. máxima: \n" + main.getString("temp_max") + "°C"
+                val temperaturaMin = "Temp. mínima: \n" + main.getString("temp_min") + "°C"
                 val latitud = "Latitud: \n"+ coordenadas.getString("lat")
                 val longitud = "Longitud: \n"+ coordenadas.getString("lon")
+                val humedad = "Humedad: \n" + main.getString("humidity") + "%"
+                val sensacionTerm = "Sensación: \n" + main.getString("feels_like") + "°C"
 
-                findViewById<TextView>(R.id.textCiudadPrin).text = ciudadActual
+                findViewById<TextView>(R.id.textCiudad).text = ciudadActual
                 findViewById<TextView>(R.id.textDescripcion).text = descripción
                 findViewById<TextView>(R.id.textLatitud).text = latitud
                 findViewById<TextView>(R.id.textLongitud).text = longitud
                 findViewById<TextView>(R.id.textGrados).text = temperaturaActual
                 findViewById<TextView>(R.id.textTempMax).text = temperaturaMax
                 findViewById<TextView>(R.id.textTempMin).text = temperaturaMin
+                findViewById<TextView>(R.id.textSensTerm).text = sensacionTerm
+                findViewById<TextView>(R.id.textHumedad).text = humedad
 
             }catch (e: Exception){
-                findViewById<TextView>(R.id.textCiudadPrin).text = null
+                findViewById<TextView>(R.id.textCiudad).text = null
                 findViewById<TextView>(R.id.textDescripcion).text = "Fallo al consultar clima"
                 findViewById<TextView>(R.id.textLatitud).text = null
                 findViewById<TextView>(R.id.textLongitud).text = null
                 findViewById<TextView>(R.id.textGrados).text = null
                 findViewById<TextView>(R.id.textTempMax).text = null
                 findViewById<TextView>(R.id.textTempMin).text = null
+                findViewById<TextView>(R.id.textSensTerm).text = null
+                findViewById<TextView>(R.id.textHumedad).text = null
             }
         }
     }
